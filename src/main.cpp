@@ -1,7 +1,7 @@
 #include "__base__.hpp"
 
-// Balaye l'ensemble des floatant pouvant être générer pour les assigner
-// a une valeur dans une plage, puis affiche la distribution obtenu (qui doit être linéaire)
+// Balaye l'ensemble des floattants pouvant être générés pour les assigner
+// à une valeur dans une plage, puis affiche la distribution obtenu (qui doit être linéaire)
 void afficher_distribution_float(u32 mini, u32 maxi)
 {
     check(mini < maxi);
@@ -10,11 +10,11 @@ void afficher_distribution_float(u32 mini, u32 maxi)
     vec<u32> qte_par_val = vec<u32>(maxi);
     repeat(i, range) { qte_par_val.push(0); }
 
-    // Balaye l'ensemble de tout les float généré par mersenne twister
+    // Balaye l'ensemble de tout les floats générés par Mersenne Twister
     u32 i = 0;
     do
     {
-        // u32 to [0, 1]. Same forumla used in mt_genrand_real1
+        // u32 to [0, 1]. Même forume utilisé par mt_genrand_real1
         fmax f = mt_u32_to_fmax(i);
         u32 idx = f * range;
         if (idx < qte_par_val.length()) { qte_par_val[idx]++; }
@@ -22,7 +22,7 @@ void afficher_distribution_float(u32 mini, u32 maxi)
         i++;
     }while(i != 0);
 
-    printf("distribution avec des floatants (32 bits) entre %" u32_format " et %" u32_format " :\n", mini, maxi);
+    printf("distribution avec des floattants (32 bits) entre %" u32_format " et %" u32_format " :\n", mini, maxi);
     repeat(i, qte_par_val.length())
     {
         printf("%" u32_format " : %" u32_format " val ( %" fmax_format " %%)\n", (u32)i + mini, qte_par_val[i], qte_par_val[i] * 100.0 / u32_max);
@@ -38,7 +38,6 @@ typedef union
 
 void trouver_valeur_impossible_a_obtenir(u32 maxi)
 {
-
     check(sizeof(u32) == sizeof(fmax)); // 4 octets chacun (32 bits)
 
     vec<bool> valeur_possible_a_obtenir = vec<bool>(maxi);
@@ -57,7 +56,7 @@ void trouver_valeur_impossible_a_obtenir(u32 maxi)
         i++;
     }while(i != 0);
 
-    printf("pour generer un nombre entre 0 et %" u32_format ", les nombre suivants sont impossible à obtenir :\n", maxi);
+    printf("pour generer un nombre entre 0 et %" u32_format ", les nombres suivants sont impossibles a obtenir :\n", maxi);
 
     repeat(idx, maxi) 
     { 
